@@ -1,0 +1,20 @@
+<BaseLayout
+  x-state="{
+    selectedComponent: (new window.URL(document.location)).hash.slice(1),
+    components: {}
+  }"
+  x-promise="{
+    state: {
+      components: fetch('/components.json').then(res => res.json())
+    }
+  }"
+>
+  <slot name="aside">
+    <ComponentSelector &components="(get context components)" />
+  </slot>
+  <slot name="content">
+    <div class="md:mx-auto px-4 md:px-0 w-full lg:max-w-3xl prose lg:prose-xl">
+      <ComponentViewer />
+    </div>
+  </slot>
+</BaseLayout>

@@ -1,0 +1,9 @@
+<ul &foreach="(get props components)">
+  <li>
+    <a
+      &href="(concat # (get props name))"
+      &onclick="(concat 'setState({ selectedComponent: `'(get props name)'` })')"
+      &children="(get props name)"
+    ></a>
+  </li>
+</ul>
